@@ -2,7 +2,7 @@ package repository
 
 import conf.util.SocialMedia
 import domain.HashSite
-import org.scalatest.{GivenWhenThen, FeatureSpec}
+import org.scalatest.{FeatureSpec, GivenWhenThen}
 import respository.HashSiteRepository
 /**
  * Created by hashcode on 2015/04/06.

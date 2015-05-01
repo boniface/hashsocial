@@ -39,3 +39,19 @@ libraryDependencies += "com.beachape" % "enumeratum-play_2.11" % "1.1.0"
 
 libraryDependencies += "com.beachape" % "enumeratum-play-json_2.11" % "1.1.0"
 
+libraryDependencies += "org.jsoup" % "jsoup" % "1.8.2"
+
+libraryDependencies += "com.syncthemall" % "goose" % "2.1.25"
+
+libraryDependencies += "org.scalaz" % "scalaz-core_2.11" % "7.1.1"
+
+libraryDependencies += "org.scalaz" % "scalaz-effect_2.11" % "7.1.1"
+
+libraryDependencies += "org.scalaz" % "scalaz-typelevel_2.11" % "7.1.1"
+
+libraryDependencies += "org.scalaz" % "scalaz-scalacheck-binding_2.11" % "7.1.1" % "test"
+
+libraryDependencies += "org.scalaz" % "scalaz-concurrent_2.11" % "7.1.1"
+
+libraryDependencies += "org.scala-lang.modules" %% "scala-async" % "0.9.2"
+

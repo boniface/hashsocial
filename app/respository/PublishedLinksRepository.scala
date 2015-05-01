@@ -7,7 +7,6 @@ import com.websudos.phantom.keys.PartitionKey
 import conf.connections.DataConnection
 import domain.PublishedLinks
 
-
 import scala.concurrent.Future
 
 /**

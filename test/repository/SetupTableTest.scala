@@ -4,7 +4,6 @@ import org.scalatest.{FeatureSpec, GivenWhenThen}
 import respository.HashSiteRepository
 
 import scala.concurrent.Await
-
 import scala.concurrent.duration._
 
 /**

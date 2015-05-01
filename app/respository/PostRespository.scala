@@ -2,11 +2,10 @@ package respository
 
 import java.util.Date
 
-import com.datastax.driver.core.{ResultSet, Row}
+import com.datastax.driver.core.Row
 import com.websudos.phantom.Implicits._
 import com.websudos.phantom.iteratee.Iteratee
 import conf.connections.DataConnection
-
 import domain.Post
 
 import scala.concurrent.Future
@@ -70,8 +69,7 @@ class PostRespository extends CassandraTable[PostRespository, Post] {
 object PostRespository extends PostRespository with DataConnection {
   override lazy val tableName = "posts"
   def getLatestPosts(zone: String): Future[Iterator[Post]] = {
-    select.where(_.zone eqs zone)
-      .fetchEnumerator() run Iteratee.slice(0, 50)
+    select.where(_.zone eqs zone).fetchEnumerator() run Iteratee.slice(0, 50)
   }
 
 }

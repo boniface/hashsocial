@@ -1,6 +1,6 @@
 package conf.connections
 
-import com.datastax.driver.core.{Session, Cluster}
+import com.datastax.driver.core.{Cluster, Session}
 import com.websudos.phantom.Implicits._
 
 import scala.concurrent.{Future, blocking}
