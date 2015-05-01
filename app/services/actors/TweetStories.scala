@@ -12,17 +12,20 @@ import services.api.MediaAPI
 class TweetStories extends Actor with ActorLogging {
   override def receive: Receive = {
     case PostsMessage(twitter,zone,posts)=>{
-      MediaAPI().getZoneHashTags(zone) map ( tag => {
+      MediaAPI().getZoneHashTags(zone) map ( tag =>  tag match {
+        case Some(value) =>{
+          posts foreach( post => {
+            val media = Media(post.title,post.link,post.imageUrl,value.hashtag)
+             val reply = MediaAPI().postToTwitter(media,twitter)
 
-
-        posts foreach( post=> {
-
-          val media = Media(post.title,post.link,post.imageUrl,tag.)
+            // Send to PostPub Links
+          })
+        }
+        case None =>
 
         })
 
-      
-      })
+
 
 
     }
