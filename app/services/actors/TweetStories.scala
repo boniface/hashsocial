@@ -21,8 +21,7 @@ class TweetStories extends Actor with ActorLogging {
             // Send to PostPub Links
           })
         }
-        case None =>
-
+        case None => None
         })
 
 
