@@ -8,6 +8,7 @@ import play.api.{Logger, Application, GlobalSettings}
 import play.api.mvc.WithFilters
 import services.MainActor
 import services.actors.MainActor
+import services.actors.messages.Messages.StartMessage
 import services.messages.Messages.StartMessage
 
 import scala.concurrent.duration.Duration

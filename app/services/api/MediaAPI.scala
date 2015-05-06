@@ -5,10 +5,10 @@ import java.net.URL
 import com.websudos.phantom.Implicits.ResultSet
 import conf.connections.SocialConnect
 import conf.util.SocialMedia
-import domain.{HashTag, PublishedLinks, HashSite, Post}
+import domain._
 import facebook4j.Facebook
 import model.{Credentials, Media}
-import respository.{HashTagRepository, HashSiteRepository, PostRespository, PublishedLinksRepository}
+import respository._
 import twitter4j.{StatusUpdate, Twitter}
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -30,6 +30,7 @@ trait MediaAPI {
   def getZoneStories(zone:String):Future[Iterator[Post]]
   def publishTwittedStory(item:String,linkhash:String):Future[ResultSet]
   def getZoneHashTags(zone:String):Future[Option[HashTag]]
+  def getZones:Future[Seq[Zone]]
 }
 
 object MediaAPI {
@@ -87,9 +88,11 @@ object MediaAPI {
       val res =  PublishedLinksRepository.save(publishedLink)
       res
     }
-
     override def getZoneHashTags(zone: String): Future[Option[HashTag]] = {
       HashTagRepository.getZoneHashTags(zone)
+    }
+    override def getZones: Future[Seq[Zone]] = {
+      ZoneRespository.getAllZones
     }
   }
 }

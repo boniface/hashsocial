@@ -1,6 +1,6 @@
 package services.actors.messages
 
-import domain.Post
+import domain.{PublishedLinks, Post}
 import twitter4j.Twitter
 
 /**
@@ -11,5 +11,6 @@ object Messages {
     case class ZoneMessage(zone:String)
     case class CredentialMessage(twitter:Twitter,zone:String)
     case class PostsMessage(twitter:Twitter,zone:String,posts:Iterator[Post])
+    case class PublishPost(post: Post)
 
 }

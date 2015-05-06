@@ -1,15 +1,17 @@
 package services.actors
 
 import akka.actor.Actor.Receive
-import akka.actor.{ActorLogging, Actor}
+import akka.actor.{Props, ActorLogging, Actor}
+import akka.routing.RoundRobinPool
 import model.Media
-import services.actors.messages.Messages.PostsMessage
+import services.actors.messages.Messages.{PublishPost, PostsMessage}
 import services.api.MediaAPI
 
 /**
  * Created by hashcode on 2015/05/01.
  */
-class TweetStories extends Actor with ActorLogging {
+class TweetStoriesActor extends Actor with ActorLogging {
+  val publishTweetActor = context.actorOf(Props[PublishTweetActor].withRouter(RoundRobinPool(nrOfInstances = 5)))
   override def receive: Receive = {
     case PostsMessage(twitter,zone,posts)=>{
       MediaAPI().getZoneHashTags(zone) map ( tag =>  tag match {
@@ -17,8 +19,7 @@ class TweetStories extends Actor with ActorLogging {
           posts foreach( post => {
             val media = Media(post.title,post.link,post.imageUrl,value.hashtag)
              val reply = MediaAPI().postToTwitter(media,twitter)
-
-            // Send to PostPub Links
+            publishTweetActor ! PublishPost(post)
           })
         }
         case None => None

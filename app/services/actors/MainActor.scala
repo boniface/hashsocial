@@ -1,8 +1,11 @@
 package services.actors
 
-import akka.actor.Actor
+import akka.actor.{Props, Actor}
 import akka.event.Logging
-import services.actors.messages.Messages.StartMessage
+import akka.routing.RoundRobinPool
+import services.actors.messages.Messages.{ZoneMessage, StartMessage}
+import services.api.MediaAPI
+import scala.concurrent.ExecutionContext.global
 
 
 /**
@@ -10,13 +13,17 @@ import services.actors.messages.Messages.StartMessage
  */
 class MainActor extends Actor{
 
+
   val log = Logging(context.system, this)
 
   override def receive: Receive = {
+  // Send Message to get Credentials
     case StartMessage(start) =>{
-
+      val credentialsActor = context.actorOf(Props[GetCredentialsActor].withRouter(RoundRobinPool(nrOfInstances = 5)))
+      MediaAPI().getZones map (zones => zones foreach {
+        zone => credentialsActor ! ZoneMessage(zone.code)
+      })
     }
-
     case _=> log.info("received unknown message")
 
   }
