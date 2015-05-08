@@ -6,7 +6,7 @@ import conf.util.SocialMedia
 import domain.PublishedLinks
 import respository.PublishedLinksRepository
 import services.actors.messages.Messages.PublishPost
-
+import scala.concurrent.ExecutionContext.Implicits.global
 /**
  * Created by hashcode on 2015/05/06.
  */

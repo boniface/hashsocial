@@ -5,7 +5,7 @@ import akka.actor.{Props, ActorLogging, Actor}
 import akka.routing.RoundRobinPool
 import services.actors.messages.Messages.{PostsMessage, CredentialMessage}
 import services.api.MediaAPI
-
+import scala.concurrent.ExecutionContext.Implicits.global
 /**
  * Created by hashcode on 2015/05/01.
  */

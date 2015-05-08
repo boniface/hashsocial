@@ -1,17 +1,16 @@
 import java.util.concurrent.TimeUnit
 
 import akka.actor.Props
-import conf.CORSFilter
 import conf.util.CORSFilter
 import play.api.libs.concurrent.Akka
 import play.api.{Logger, Application, GlobalSettings}
 import play.api.mvc.WithFilters
-import services.MainActor
 import services.actors.MainActor
 import services.actors.messages.Messages.StartMessage
-import services.messages.Messages.StartMessage
+
 
 import scala.concurrent.duration.Duration
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
  * Created by hashcode on 2015/05/01.
@@ -22,7 +21,6 @@ object Global extends WithFilters(CORSFilter()) with GlobalSettings {
     super.onStart(app)
     schedular(app)
   }
-
   def schedular(app: Application) = {
     Logger.info("Starting The Daemon")
     val mainActor = Akka.system(app).actorOf(Props(new MainActor()))

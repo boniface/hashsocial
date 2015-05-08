@@ -5,6 +5,7 @@ import akka.routing.RoundRobinPool
 import model.Credentials
 import services.actors.messages.Messages.{CredentialMessage, ZoneMessage}
 import services.api.MediaAPI
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
  * Created by hashcode on 2015/05/01.

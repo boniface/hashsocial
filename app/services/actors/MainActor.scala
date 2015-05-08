@@ -5,7 +5,8 @@ import akka.event.Logging
 import akka.routing.RoundRobinPool
 import services.actors.messages.Messages.{ZoneMessage, StartMessage}
 import services.api.MediaAPI
-import scala.concurrent.ExecutionContext.global
+import scala.concurrent.ExecutionContext.Implicits.global
+
 
 
 /**

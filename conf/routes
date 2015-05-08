@@ -4,7 +4,8 @@
 
 # Home page
 GET        /                    controllers.Application.index
-GET       /init                 controllers.Application.activate
+GET       /init                 controllers.Setup.dbsetup
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file        controllers.Assets.at(path="/public", file)
